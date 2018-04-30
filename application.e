@@ -23,7 +23,7 @@ feature {NONE} -- Initialization
 		do
 			create gameboard.constructor (10, 10)
 			initMap
-			io.put_string(gameboard.getboardasstring)
+			io.putstring (gameboard.getboardasstring)
 			print ("Hello Eiffel World!%N")
 		end
 
@@ -32,8 +32,6 @@ feature {NONE} -- Initialization
 			walltile: WALL_TILE
 			i:INTEGER
 		do
-			io.put_boolean (gameboard.gettile (1, 1).iswalkable)
-
 			from
 				i:=0
 			until
