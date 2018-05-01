@@ -36,12 +36,10 @@ feature
 			Result := gameboardHeight
 		end
 
-	setBoard(newboard : ARRAY[ARRAY[TILE]])
-		do
-			board := newboard
-		end
-
 	constructor (height : INTEGER; width : INTEGER)
+		require
+			height_valid: height/=Void and then height > 0
+			width_valid: width/=Void and then width > 0
 		local
 			i : INTEGER
 			array : ARRAY[TILE]
@@ -63,6 +61,10 @@ feature
 		end
 
 	setTile(height : INTEGER; width : INTEGER; tile : TILE)
+		require
+			height_valid: height/=Void and then height >= 0
+			width_valid: width/=Void and then width >= 0
+			tile_valid: tile/=Void
 		local
 			array : ARRAY[TILE]
 		do
@@ -71,6 +73,9 @@ feature
 		end
 
 	getTile(height: INTEGER; width : INTEGER) : TILE
+		require
+			height_valid: height/=Void and then height >= 0
+			width_valid: width/=Void and then width >= 0
 		local
 			array : ARRAY[TILE]
 		do

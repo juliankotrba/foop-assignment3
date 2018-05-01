@@ -18,8 +18,6 @@ feature {NONE} -- Initialization
 
 	make
 			-- Run application.
-		local
-			walltile: WALL_TILE
 		do
 			create gameboard.constructor (10, 10)
 			initMap
