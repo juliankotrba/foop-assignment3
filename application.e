@@ -28,6 +28,7 @@ feature {NONE} -- Initialization
 	initMap
 		local
 			walltile: WALL_TILE
+			exittile: EXIT_TILE
 			i:INTEGER
 		do
 			from
@@ -45,7 +46,10 @@ feature {NONE} -- Initialization
 				gameboard.settile (i, 9, walltile)
 				i:=i+1
 			end
-		end
 
+			create exittile
+			gameboard.settile (7, 9, exittile)
+
+		end
 
 end
