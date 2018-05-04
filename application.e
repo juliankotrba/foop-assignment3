@@ -7,7 +7,7 @@ class
 	APPLICATION
 
 inherit
-	ARGUMENTS
+	EXECUTION_ENVIRONMENT
 
 create
 	make
@@ -25,14 +25,17 @@ feature {NONE} -- Initialization
 		end
 
 	gameboard : GAMEBOARD
+	ui : UI
 
 	make
 			-- Run application.
 		do
+			create ui.init
+
 			create gameboard.constructor (height, width)
 			initMap
-			io.putstring (gameboard.getboardasstring)
-			print ("Hello Eiffel World!%N")
+
+			ui.draw_map (gameboard)
 		end
 
 	initMap
