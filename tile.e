@@ -9,7 +9,7 @@ deferred class
 feature
 	isWalkable : BOOLEAN
 		deferred
-		end
+	end
 
 	getSymbol : STRING
 		deferred
