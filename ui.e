@@ -11,37 +11,30 @@ inherit
 
 create init
 
-feature
+feature {NONE}
 
 	terminal: ANSI_HELPER
 
-	debug_draw
-		local
-			i: INTEGER
-		do
-			from
-				i := 1
-			until
-				i >= 10
-			loop
-				i := i + 1
-				draw_coord (i,4)
-				sleep (1000000000)
-			end
-
-		end
+feature
 
 	init
 		do
-			create terminal.init
+			create terminal.init (11)
 
 			print ("%/27/[0;37;46m");
 			print (" ********************** %N")
 			print (" *      Botracer      * %N")
 			print (" ********************** %N")
 
-			draw_players
+			terminal.reset_color
 
+			print ("%N")
+			print ("%/27/[0;30;41m Player 1 %N")
+			print ("%/27/[0;30;42m Player 2 %N")
+			print ("%/27/[0;30;43m Player 3 %N")
+			print ("%N")
+
+			terminal.reset_color
 			terminal.save
 
 			print ("%N")
@@ -57,37 +50,24 @@ feature
 	draw (state: GAME_STATE)
 		do
 			terminal.clear
-			print (state.gameboard.getboardasstring)
+			print (state.gameboard.getboardasstring) -- Draw the gameboard
+			--loop draw_player(state.player) -- Draw the players
 			terminal.reset_input
-			--loop draw(state.player)
 		end
 
 	draw_player (player: PLAYER)
-		do
-			-- ???
-		end
-
-	draw_players
-		do
-			terminal.reset
-			print ("%N")
-			print ("%/27/[0;30;41m Player 1 %N")
-			print ("%/27/[0;30;42m Player 2 %N")
-			print ("%/27/[0;30;43m Player 3 %N")
-			print ("%N")
-			terminal.reset
-		end
-
-	draw_coord(x: INTEGER; y: INTEGER)
 		local
-			oY: INTEGER
+			x: INTEGER
+			y: INTEGER
 		do
-			terminal.reset
-			oY := y + 11
-			print("%/27/[" + oY.out + ";" + x.out + "H");
-			terminal.player (0)
-			print ("P")
+			x := 4
+			y := 4
+
+			terminal.move_offset (x, y) -- Move cursor to the player position
+			terminal.player_color (0) -- Select player color
+			print ("P") -- Draw player symbol
 			terminal.reset_input
 		end
+
 
 end
