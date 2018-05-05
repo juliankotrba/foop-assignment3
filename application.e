@@ -43,6 +43,15 @@ feature {NONE} -- Initialization
 			walltile: WALL_TILE
 			exittile: EXIT_TILE
 			emptytile: EMPTY_TILE
+			clearmemory: MARK_CLEAR_MEMORY
+			moveaway: MARK_MOVE_AWAY
+			stayinarea: MARK_STAY_IN_AREA
+			turnleft: MARK_TURN_LEFT
+			turnright: MARK_TURN_RIGHT
+			algodfs: MARK_ALGO_DFS
+			algoleft: MARK_ALGO_left
+			algorandom: MARK_ALGO_RANDOM
+			algoright: MARK_ALGO_RIGHT
 			i:INTEGER
 			j:INTEGER
 		do
@@ -71,7 +80,15 @@ feature {NONE} -- Initialization
 			create exittile
 			gameboard.settile (14, 7, exittile)
 
-
+			create clearmemory
+			create moveaway
+			create stayinarea
+			create turnleft
+			create turnright
+			create algodfs
+			create algoleft
+			create algoright
+			create algorandom
 			create emptytile
 			gameboard.settile (1, 1, emptytile)
 			gameboard.settile (1, 2, emptytile)
@@ -85,7 +102,7 @@ feature {NONE} -- Initialization
 			gameboard.settile (1, 11, emptytile)
 			gameboard.settile (1, 12, emptytile)
 			gameboard.settile (1, 13, emptytile)
-			gameboard.settile (1, 14, emptytile)
+			gameboard.settile (1, 14, clearmemory)
 			gameboard.settile (1, 15, emptytile)
 			gameboard.settile (1, 16, emptytile)
 			gameboard.settile (1, 17, emptytile)
@@ -97,7 +114,7 @@ feature {NONE} -- Initialization
 			gameboard.settile (2, 5, emptytile)
 			gameboard.settile (2, 9, emptytile)
 			gameboard.settile (2, 15, emptytile)
-			gameboard.settile (2, 19, emptytile)
+			gameboard.settile (2, 19, moveaway)
 			gameboard.settile (2, 21, emptytile)
 
 
@@ -107,7 +124,7 @@ feature {NONE} -- Initialization
 			gameboard.settile (3, 5, emptytile)
 			gameboard.settile (3, 6, emptytile)
 			gameboard.settile (3, 7, emptytile)
-			gameboard.settile (3, 8, emptytile)
+			gameboard.settile (3, 8, stayinarea)
 			gameboard.settile (3, 9, emptytile)
 			gameboard.settile (3, 10, emptytile)
 			gameboard.settile (3, 11, emptytile)
@@ -136,7 +153,7 @@ feature {NONE} -- Initialization
 			gameboard.settile (5, 11, emptytile)
 			gameboard.settile (5, 13, emptytile)
 			gameboard.settile (5, 14, emptytile)
-			gameboard.settile (5, 15, emptytile)
+			gameboard.settile (5, 15, turnleft)
 			gameboard.settile (5, 17, emptytile)
 			gameboard.settile (5, 19, emptytile)
 			gameboard.settile (5, 21, emptytile)
@@ -154,7 +171,7 @@ feature {NONE} -- Initialization
 			gameboard.settile (7, 1, emptytile)
 			gameboard.settile (7, 3, emptytile)
 			gameboard.settile (7, 5, emptytile)
-			gameboard.settile (7, 7, emptytile)
+			gameboard.settile (7, 7, turnright)
 			gameboard.settile (7, 8, emptytile)
 			gameboard.settile (7, 9, emptytile)
 			gameboard.settile (7, 10, emptytile)
@@ -170,7 +187,7 @@ feature {NONE} -- Initialization
 
 			gameboard.settile (8, 1, emptytile)
 			gameboard.settile (8, 5, emptytile)
-			gameboard.settile (8, 15, emptytile)
+			gameboard.settile (8, 15, algoleft)
 			gameboard.settile (8, 21, emptytile)
 
 
@@ -186,7 +203,7 @@ feature {NONE} -- Initialization
 			gameboard.settile (9, 13, emptytile)
 			gameboard.settile (9, 15, emptytile)
 			gameboard.settile (9, 16, emptytile)
-			gameboard.settile (9, 17, emptytile)
+			gameboard.settile (9, 17, algodfs)
 			gameboard.settile (9, 18, emptytile)
 			gameboard.settile (9, 19, emptytile)
 			gameboard.settile (9, 21, emptytile)
@@ -214,7 +231,7 @@ feature {NONE} -- Initialization
 			gameboard.settile (11, 16, emptytile)
 			gameboard.settile (11, 17, emptytile)
 			gameboard.settile (11, 19, emptytile)
-			gameboard.settile (11, 21, emptytile)
+			gameboard.settile (11, 21, algoright)
 
 			gameboard.settile (12, 1, emptytile)
 			gameboard.settile (12, 5, emptytile)
@@ -237,7 +254,7 @@ feature {NONE} -- Initialization
 			gameboard.settile (13, 12, emptytile)
 			gameboard.settile (13, 13, emptytile)
 			gameboard.settile (13, 14, emptytile)
-			gameboard.settile (13, 15, emptytile)
+			gameboard.settile (13, 15, algorandom)
 			gameboard.settile (13, 17, emptytile)
 			gameboard.settile (13, 18, emptytile)
 			gameboard.settile (13, 19, emptytile)
