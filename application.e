@@ -40,6 +40,9 @@ feature {NONE} -- Initialization
 			algoleft: MARK_ALGO_LEFT
 			algorandom: MARK_ALGO_RANDOM
 			algoright: MARK_ALGO_RIGHT
+
+			ticks: INTEGER
+			read_char: CHARACTER
 		do
 			create ui.init
 
@@ -67,5 +70,52 @@ feature {NONE} -- Initialization
 			gameboard.set_tile (13, 15, algorandom)
 
 			ui.draw_map (gameboard)
+
+			set_non_blocking
+			make_term_raw
+
+
+			from
+				ticks := 0
+			invariant
+				ticks >= 0
+			until
+				ticks >= 100
+			loop
+
+				read_char := get_char
+				if (read_char = 'w') then
+					print(read_char)
+				elseif (read_char = 'k') then
+					print(read_char)
+				end
+
+				ticks := ticks + 1
+				sleep (1000 * 1000 * 100)
+			end
 		end
+
+
+	feature {NONE}
+	clear_screen
+			-- Clears the console
+	    external "C inline use <stdlib.h>"
+	        alias "system(%"clear%");"
+	    end
+
+	set_non_blocking
+		external "C inline use <fcntl.h>"
+			alias "fcntl(0, F_SETFL, O_NONBLOCK);"
+		end
+
+	make_term_raw
+		external "C inline use <termios.h>"
+			alias "struct termios term; tcgetattr(0, &term); term.c_lflag &= ~(ICANON | ECHO); term.c_cc[VTIME] = 0; term.c_cc[VMIN] = 0; tcsetattr(0, 0, &term);"
+		end
+
+	get_char : CHARACTER
+		external "C inline use <stdio.h>"
+			alias "getchar()"
+		end
+
 end
