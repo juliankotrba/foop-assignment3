@@ -55,7 +55,7 @@ feature
 		do
 			terminal.clear
 			print (state.gameboard.get_board_as_string) -- Draw the gameboard
-			--loop draw_player(state.player) -- Draw the players
+			across state.players as player loop draw_player(player.item) end -- Draw the players
 			terminal.reset_input
 		end
 
@@ -67,8 +67,8 @@ feature
 			x := 4
 			y := 4
 
-			terminal.move_offset (x, y) -- Move cursor to the player position
-			terminal.player_color (0) -- Select player color
+			terminal.move_offset (player.position_width + 1, player.position_height) -- Move cursor to the player position
+			terminal.player_color (player.bot_id) -- Select player color
 			print ("P") -- Draw player symbol
 			terminal.reset_input
 		end
