@@ -11,12 +11,12 @@ inherit
 	TILE
 
 feature
-	isWalkable : BOOLEAN
+	is_walkable : BOOLEAN
 		do
 			Result := true
 		end
 
-	has_effect(player: PLAYER)
+	has_effect(player : PLAYER)
 		require
 			player_valid: player /= VOID
 			deferred

@@ -43,14 +43,14 @@ feature
 	draw_map (state: GAMEBOARD)
 		do
 			terminal.clear
-			print (state.getboardasstring)
+			print (state.get_board_as_string)
 			terminal.reset_input
 		end
 
 	draw (state: GAME_STATE)
 		do
 			terminal.clear
-			print (state.gameboard.getboardasstring) -- Draw the gameboard
+			print (state.gameboard.get_board_as_string) -- Draw the gameboard
 			--loop draw_player(state.player) -- Draw the players
 			terminal.reset_input
 		end

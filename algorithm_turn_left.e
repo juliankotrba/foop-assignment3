@@ -11,7 +11,7 @@ inherit
 	ALGORITHM
 
 feature
-	getNextStep (currentwidth: INTEGER; currentheight: INTEGER; gameboard: GAMEBOARD; botmemory: BOTMEMORY ) : STEP
+	get_next_step (currentwidth : INTEGER; currentheight : INTEGER; gameboard : GAMEBOARD; botmemory : BOTMEMORY) : STEP
 		local
 			step: STEP
 		do

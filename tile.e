@@ -7,11 +7,11 @@ note
 deferred class
 	TILE
 feature
-	isWalkable : BOOLEAN
+	is_walkable : BOOLEAN
 		deferred
 	end
 
-	getSymbol : STRING
+	get_symbol : STRING
 		deferred
 	end
 end

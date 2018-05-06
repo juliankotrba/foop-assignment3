@@ -10,12 +10,12 @@ inherit
 	TILE
 
 feature
-	isWalkable : BOOLEAN
+	is_walkable : BOOLEAN
 		do
 			Result := false
 		end
 
-	getSymbol : STRING
+	get_symbol : STRING
 		do
 			Result := "%/27/[1;36;47mE"
 		end

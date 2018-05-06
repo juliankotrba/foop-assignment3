@@ -11,12 +11,12 @@ inherit
 	MARK
 
 feature
-	getSymbol : STRING
+	get_symbol : STRING
 	do
 		Result := "%/27/[0;30;47mC"
 	end
 
-	has_effect(player: PLAYER)
+	has_effect(player : PLAYER)
 		do
 			print("effect of MARK_CLEAR_MEMORY")
 		end
