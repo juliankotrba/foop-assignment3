@@ -9,6 +9,6 @@ deferred class
 feature
 	getNextStep (currentwidth: INTEGER; currentheight: INTEGER;gameboard: GAMEBOARD; botmemory:BOTMEMORY ) : STEP
 		deferred
-		end
+	end
 
 end
