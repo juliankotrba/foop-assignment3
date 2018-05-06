@@ -42,11 +42,12 @@ feature
 			print ("%/27/[0;37;40m")
 		end
 
+	-- Moves the cursor to the input line and clears it
 	reset_input
 		do
 			restore
 			reset_color
-			print("%/27/[0K") -- Clears the line
+			print ("%/27/[0K") -- Clears the line
 		end
 
 	-- Moves the cursor to the given coordinates
@@ -61,6 +62,7 @@ feature
 			move (x, y + offset)
 		end
 
+	-- Clear the maze
 	clear
 		do
 			reset_color
@@ -68,6 +70,7 @@ feature
 			print ("%/27/[0J") -- Clear the console from cursor to end of the screen
 		end
 
+	-- Select Player color, for drawing
 	player_color (id: INTEGER)
 		do
 			if id = 0 then
