@@ -15,6 +15,14 @@ feature {NONE}
 
 	terminal: TERMINAL
 
+	draw_player (player: PLAYER)
+		do
+			terminal.move_offset (player.position_width, player.position_height) -- Move cursor to the player position
+			terminal.player_color (player.bot_id) -- Select player color
+			print ("P") -- Draw player symbol
+			terminal.reset_input
+		end
+
 feature
 
 	init
@@ -44,34 +52,12 @@ feature
 			print ("%N")
 		end
 
-	draw_map (state: GAMEBOARD)
-		do
-			terminal.clear
-			print (state.get_board_as_string)
-			terminal.reset_input
-		end
-
 	draw (state: GAME_STATE)
 		do
 			terminal.clear
-			print (state.gameboard.get_board_as_string) -- Draw the gameboard
+			print (state.gameboard.out) -- Draw the gameboard
 			across state.players as player loop draw_player(player.item) end -- Draw the players
 			terminal.reset_input
 		end
-
-	draw_player (player: PLAYER)
-		local
-			x: INTEGER
-			y: INTEGER
-		do
-			x := 4
-			y := 4
-
-			terminal.move_offset (player.position_width + 1, player.position_height) -- Move cursor to the player position
-			terminal.player_color (player.bot_id) -- Select player color
-			print ("P") -- Draw player symbol
-			terminal.reset_input
-		end
-
 
 end

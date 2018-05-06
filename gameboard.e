@@ -6,7 +6,11 @@ note
 
 class
 	GAMEBOARD
-
+inherit
+    ANY
+        redefine
+            out
+        end
 create
 	constructor
 
@@ -159,7 +163,7 @@ feature
 			Result := array.at(width)
 		end
 
-	get_board_as_string : STRING
+	out : STRING
 		local
 			string:STRING
 			array:ARRAY[TILE]

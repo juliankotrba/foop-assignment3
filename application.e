@@ -43,7 +43,6 @@ feature {NONE} -- Initialization
 			set_non_blocking
 			make_term_raw
 
-
 			from
 				ticks := 0
 			invariant

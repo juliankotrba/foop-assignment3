@@ -71,11 +71,11 @@ feature
 	player_color (id: INTEGER)
 		do
 			if id = 0 then
-				print ("%/27/[0;30;41m")
+				print ("%/27/[1;30;41m")
 			elseif id = 1 then
-				print ("%/27/[0;30;42m")
+				print ("%/27/[1;30;42m")
 			elseif id = 2 then
-				print ("%/27/[0;30;43m")
+				print ("%/27/[1;30;43m")
 			else
 				reset_color
 			end
