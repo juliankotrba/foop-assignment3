@@ -9,10 +9,18 @@ class
 
 inherit
 	MARK
+		redefine
+			get_symbol
+		end
 
 feature
-	getSymbol : STRING
+	get_symbol : STRING
 	do
 		Result := "%/27/[1;35;47m2"
 	end
+
+	has_effect(player : PLAYER)
+		do
+			print("effect of MARK_ALGO_LEFT")
+		end
 end

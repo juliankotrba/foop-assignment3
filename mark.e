@@ -11,12 +11,14 @@ inherit
 	TILE
 
 feature
-	isWalkable : BOOLEAN
-	do
-		Result := true
-	end
+	is_walkable : BOOLEAN
+		do
+			Result := true
+		end
 
-	getSymbol : STRING
-		deferred
-	end
+	has_effect(player : PLAYER)
+		require
+			player_valid: player /= VOID
+			deferred
+		end
 end

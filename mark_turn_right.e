@@ -11,8 +11,13 @@ inherit
 	MARK
 
 feature
-	getSymbol : STRING
+	get_symbol : STRING
 	do
 		Result := "%/27/[1;34;47mR"
 	end
+
+	has_effect(player : PLAYER)
+		do
+			print("effect of MARK_TURN_RIGHT")
+		end
 end

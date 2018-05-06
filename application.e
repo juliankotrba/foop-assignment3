@@ -56,15 +56,15 @@ feature {NONE} -- Initialization
 			create algoright
 			create algorandom
 
-			gameboard.settile (2, 19, moveaway)
-			gameboard.settile (1, 14, clearmemory)
-			gameboard.settile (3, 8, stayinarea)
-			gameboard.settile (5, 15, turnleft)
-			gameboard.settile (7, 7, turnright)
-			gameboard.settile (8, 15, algoleft)
-			gameboard.settile (9, 17, algodfs)
-			gameboard.settile (11, 21, algoright)
-			gameboard.settile (13, 15, algorandom)
+			gameboard.set_tile (2, 19, moveaway)
+			gameboard.set_tile (1, 14, clearmemory)
+			gameboard.set_tile (3, 8, stayinarea)
+			gameboard.set_tile (5, 15, turnleft)
+			gameboard.set_tile (7, 7, turnright)
+			gameboard.set_tile (8, 15, algoleft)
+			gameboard.set_tile (9, 17, algodfs)
+			gameboard.set_tile (11, 21, algoright)
+			gameboard.set_tile (13, 15, algorandom)
 
 			ui.draw_map (gameboard)
 		end

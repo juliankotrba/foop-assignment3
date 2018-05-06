@@ -15,14 +15,14 @@ feature {NONE} -- variables
 	botalgorithm : ALGORITHM
 
 feature
-	setBotMemory(memory : BOTMEMORY)
+	set_bot_memory(memory : BOTMEMORY)
 		require
 			memory_valid: memory/=Void
 		do
 			botmemory := memory
 		end
 
-	getBotMemory : BOTMEMORY
+	get_bot_memory : BOTMEMORY
 		do
 			Result := botmemory
 		end

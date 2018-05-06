@@ -1,14 +1,21 @@
 note
-	description: "Summary description for {ALGORITHM}."
+	description: "Summary description for {ALGORITHM_RANDOM}."
 	author: ""
 	date: "$Date$"
 	revision: "$Revision$"
 
-deferred class
+class
+	ALGORITHM_RANDOM
+
+inherit
 	ALGORITHM
+
 feature
 	get_next_step (currentwidth : INTEGER; currentheight : INTEGER; gameboard : GAMEBOARD; botmemory : BOTMEMORY) : STEP
-		deferred
-	end
-
+		local
+			step: STEP
+		do
+			create step
+			Result := step
+		end
 end
