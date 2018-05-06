@@ -10,96 +10,10 @@ class
 create
 	constructor
 
-feature {NONE} -- variables
+feature {NONE} -- variables and private features
 	gameboardWidth : INTEGER
 	gameboardHeight : INTEGER
 	board : ARRAY[ARRAY[TILE]]
-
-feature
-	set_gamebord_width(width : INTEGER)
-		do
-			gameboardWidth := width
-		end
-
-	get_gameboard_width : INTEGER
-		do
-			Result := gameboardWidth
-		end
-
-	set_gameboard_height(height : INTEGER)
-		do
-			gameboardHeight := height
-		end
-
-	get_gameboard_height : INTEGER
-		do
-			Result := gameboardHeight
-		end
-
-	constructor (height : INTEGER; width : INTEGER)
-		require
-			height_valid: height /= Void and then height > 0
-			width_valid: width /= Void and then width > 0
-		local
-
-		do
-			create board.make_empty
-			gameboardWidth := width
-			gameboardHeight := height
-			init_map
-		end
-
-	set_tile(height : INTEGER; width : INTEGER; tile : TILE)
-		require
-			height_valid: height /= Void and then height >= 0
-			width_valid: width /= Void and then width >= 0
-			tile_valid: tile /= Void
-		local
-			array : ARRAY[TILE]
-		do
-			array := board.at(height)
-			array.enter (tile, width)
-		end
-
-	get_tile(height: INTEGER; width : INTEGER) : TILE
-		require
-			height_valid: height /= Void and then height >= 0
-			width_valid: width /= Void and then width >= 0
-		local
-			array : ARRAY[TILE]
-		do
-			array := board.at(height)
-			Result := array.at(width)
-		end
-
-	get_board_as_string : STRING
-		local
-			string:STRING
-			array:ARRAY[TILE]
-			i: INTEGER
-			j: INTEGER
-		do
-			string := ""
-			from
-				i := 0
-			until
-				i >= gameboardHeight
-			loop
-				array := board.at(i)
-				from
-					j := 0
-				until
-					j >= gameboardWidth
-				loop
-					string := string + array.at(j).get_symbol
-					j := j + 1
-				end
-				string := string + "%N"
-				i := i + 1
-			end
-
-			Result := string
-		end
 
 	init_map
 		-- initializes the map
@@ -186,5 +100,91 @@ feature
 				set_tile(row, columns.item (i), emptytile)
 				i := i + 1
 			end
+		end
+
+feature
+	set_gamebord_width(width : INTEGER)
+		do
+			gameboardWidth := width
+		end
+
+	get_gameboard_width : INTEGER
+		do
+			Result := gameboardWidth
+		end
+
+	set_gameboard_height(height : INTEGER)
+		do
+			gameboardHeight := height
+		end
+
+	get_gameboard_height : INTEGER
+		do
+			Result := gameboardHeight
+		end
+
+	constructor (height : INTEGER; width : INTEGER)
+		require
+			height_valid: height /= Void and then height > 0
+			width_valid: width /= Void and then width > 0
+		local
+
+		do
+			create board.make_empty
+			gameboardWidth := width
+			gameboardHeight := height
+			init_map
+		end
+
+	set_tile(height : INTEGER; width : INTEGER; tile : TILE)
+		require
+			height_valid: height /= Void and then height >= 0
+			width_valid: width /= Void and then width >= 0
+			tile_valid: tile /= Void
+		local
+			array : ARRAY[TILE]
+		do
+			array := board.at(height)
+			array.enter (tile, width)
+		end
+
+	get_tile(height: INTEGER; width : INTEGER) : TILE
+		require
+			height_valid: height /= Void and then height >= 0
+			width_valid: width /= Void and then width >= 0
+		local
+			array : ARRAY[TILE]
+		do
+			array := board.at(height)
+			Result := array.at(width)
+		end
+
+	get_board_as_string : STRING
+		local
+			string:STRING
+			array:ARRAY[TILE]
+			i: INTEGER
+			j: INTEGER
+		do
+			string := ""
+			from
+				i := 0
+			until
+				i >= gameboardHeight
+			loop
+				array := board.at(i)
+				from
+					j := 0
+				until
+					j >= gameboardWidth
+				loop
+					string := string + array.at(j).get_symbol
+					j := j + 1
+				end
+				string := string + "%N"
+				i := i + 1
+			end
+
+			Result := string
 		end
 end
