@@ -17,6 +17,6 @@ feature
 
 	getSymbol : STRING
 		do
-			Result := "%/27/[1;36;47mE"
+			Result := "%/27/[1;37;46mE"
 		end
 end

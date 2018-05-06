@@ -1,11 +1,11 @@
 note
-	description: "Summary description for {ANSI_HELPER}."
+	description: "Summary description for {TERMINAL}."
 	author: "David Walter"
 	date: "$Date$"
 	revision: "$Revision$"
 
 class
-	ANSI_HELPER
+	TERMINAL
 
 create
 	init
@@ -19,7 +19,7 @@ feature
 	init (init_offset: INTEGER)
 		do
 			offset := init_offset
-			print ("%N")
+			print ("%/27/[18h")
 			print ("%/27/[1J") -- clear the console from cursor to the start of the screen
 			move (0,0)
 		end
@@ -71,11 +71,11 @@ feature
 	player_color (id: INTEGER)
 		do
 			if id = 0 then
-				print ("%/27/[0;31;47m")
+				print ("%/27/[0;30;41m")
 			elseif id = 1 then
-				print ("%/27/[0;32;47m")
+				print ("%/27/[0;30;42m")
 			elseif id = 2 then
-				print ("%/27/[0;33;47m")
+				print ("%/27/[0;30;43m")
 			else
 				reset_color
 			end

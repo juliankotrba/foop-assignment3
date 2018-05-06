@@ -13,7 +13,7 @@ create init
 
 feature {NONE}
 
-	terminal: ANSI_HELPER
+	terminal: TERMINAL
 
 feature
 
@@ -29,12 +29,16 @@ feature
 			terminal.reset_color
 
 			print ("%N")
-			print ("%/27/[0;30;41m Player 1 %N")
-			print ("%/27/[0;30;42m Player 2 %N")
-			print ("%/27/[0;30;43m Player 3 %N")
-			print ("%N")
+
+			terminal.player_color (0)
+			print (" Player 1 %N")
+			terminal.player_color (1)
+			print (" Player 2 %N")
+			terminal.player_color (2)
+			print (" Player 3 %N")
 
 			terminal.reset_color
+			print ("%N")
 			terminal.save
 
 			print ("%N")

@@ -13,6 +13,6 @@ inherit
 feature
 	getSymbol : STRING
 	do
-		Result := "%/27/[0;30;47mR"
+		Result := "%/27/[1;34;47mR"
 	end
 end
