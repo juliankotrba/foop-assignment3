@@ -30,46 +30,15 @@ feature {NONE} -- Initialization
 	make
 		-- Run application.
 		local
-			-- only for testing and styling, should be removed afterwards
-			clearmemory: MARK_CLEAR_MEMORY
-			moveaway: MARK_MOVE_AWAY
-			stayinarea: MARK_STAY_IN_AREA
-			turnleft: MARK_TURN_LEFT
-			turnright: MARK_TURN_RIGHT
-			algodfs: MARK_ALGO_DFS
-			algoleft: MARK_ALGO_LEFT
-			algorandom: MARK_ALGO_RANDOM
-			algoright: MARK_ALGO_RIGHT
-
 			ticks: INTEGER
 			read_char: CHARACTER
+			game_state: GAME_STATE
 		do
 			create ui.init
-
 			create gameboard.constructor (height, width)
+			game_state := init_game_state(gameboard)
 
-			-- only for testing and styling, should be removed afterwards
-			create clearmemory
-			create moveaway
-			create stayinarea
-			create turnleft
-			create turnright
-			create algodfs
-			create algoleft
-			create algoright
-			create algorandom
-
-			gameboard.set_tile (2, 19, moveaway)
-			gameboard.set_tile (1, 14, clearmemory)
-			gameboard.set_tile (3, 8, stayinarea)
-			gameboard.set_tile (5, 15, turnleft)
-			gameboard.set_tile (7, 7, turnright)
-			gameboard.set_tile (8, 15, algoleft)
-			gameboard.set_tile (9, 17, algodfs)
-			gameboard.set_tile (11, 21, algoright)
-			gameboard.set_tile (13, 15, algorandom)
-
-			ui.draw_map (gameboard)
+			ui.draw (game_state)
 
 			set_non_blocking
 			make_term_raw
@@ -95,8 +64,43 @@ feature {NONE} -- Initialization
 			end
 		end
 
+	init_game_state(board : GAMEBOARD) : GAME_STATE
+		-- creates 3 PLAYER and a new GAME_STATE with board and the created players
+		-- returns the created GAME_STATE
+		require
+			bord_valid: board /= Void
+		local
+			player1: PLAYER
+			player2: PLAYER
+			player3: PLAYER
+			memory1: BOTMEMORY
+			memory2: BOTMEMORY
+			memory3: BOTMEMORY
+			algo_random: ALGORITHM_RANDOM
+			game_state: GAME_STATE
+		do
+			create memory1
+			create memory2
+			create memory3
+			create algo_random
 
-	feature {NONE}
+			create player1.constructor (0, memory1, algo_random)
+			create player2.constructor (1, memory2, algo_random)
+			create player3.constructor (2, memory3, algo_random)
+
+			player1.set_position_height(1)
+			player1.set_position_width (3)
+			player2.set_position_height(1)
+			player2.set_position_width (17)
+			player3.set_position_height(3)
+			player3.set_position_width (12)
+
+			create game_state.constructor (board, << player1, player2, player3 >>)
+			Result := game_state
+		end
+
+
+feature {NONE}
 	clear_screen
 			-- Clears the console
 	    external "C inline use <stdlib.h>"
