@@ -11,32 +11,35 @@ create
 	constructor
 
 feature
-	botmemory : BOTMEMORY
-	botalgorithm : ALGORITHM
+	bot_id : INTEGER
+	bot_memory : BOTMEMORY
+	bot_algorithm : ALGORITHM
 	position_width : INTEGER
 	position_height : INTEGER
 
-	constructor(memory : BOTMEMORY;algorithm : ALGORITHM)
+	constructor(id : INTEGER; memory : BOTMEMORY; algorithm : ALGORITHM)
 		require
-			memory_valid : memory/=Void
+			id_valid : id >= 0 and then id <= 3
+			memory_valid : memory /= Void
 			algorithm_valid : algorithm /= Void
 		do
-			botmemory := memory
-			botalgorithm := algorithm
+			bot_id := id
+			bot_memory := memory
+			bot_algorithm := algorithm
 		end
 
 	set_bot_memory(memory : BOTMEMORY)
 		require
 			memory_valid: memory /= Void
 		do
-			botmemory := memory
+			bot_memory := memory
 		end
 
 	set_bot_algorithm(algorithm : ALGORITHM)
 		require
 			algorithm_valid: algorithm /= Void
 		do
-			botalgorithm := algorithm
+			bot_algorithm := algorithm
 		end
 
 	set_position_width(width : INTEGER)
