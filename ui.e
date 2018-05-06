@@ -25,7 +25,7 @@ feature {NONE}
 
 	draw_legend
 		do
-			print ("%/27/[0;37;46m *       Marks        * %N");
+			print ("%/27/[0;37;46m *       Marks       * %N");
 			terminal.draw_algo (" 1 ") print (" Algorithm DFS%N")
 			terminal.draw_algo (" 2 ") print (" Algorithm Left%N")
 			terminal.draw_algo (" 3 ") print (" Algorithm Random%N")
@@ -44,9 +44,9 @@ feature
 			create terminal.init (5)
 
 			print ("%/27/[0;37;46m");
-			print (" ********************** %N")
-			print (" *      Botracer      * %N")
-			print (" ********************** %N")
+			print (" ********************* %N")
+			print (" *  Eiffel-Botracer  * %N")
+			print (" ********************* %N")
 
 			terminal.draw_line
 			print (state.gameboard.out) -- Draw the gameboard
