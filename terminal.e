@@ -59,7 +59,7 @@ feature
 	-- Moves the cursor to the given coordinates with the initial offset
 	move_offset (x: INTEGER; y: INTEGER)
 		do
-			move (x, y + offset)
+			move (x + 1, y + offset)
 		end
 
 	-- Clear the maze

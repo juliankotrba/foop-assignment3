@@ -54,7 +54,8 @@ feature
 
 	draw (state: GAME_STATE)
 		do
-			terminal.clear
+			-- terminal.clear
+			terminal.move_offset (0, 0)
 			print (state.gameboard.out) -- Draw the gameboard
 			across state.players as player loop draw_player(player.item) end -- Draw the players
 			terminal.reset_input
