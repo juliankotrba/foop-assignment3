@@ -13,6 +13,16 @@ create
 	make
 
 feature {NONE} -- Initialization
+	-- marks for user input
+	mark_algo_dfs: MARK_ALGO_DFS
+	mark_algo_left: MARK_ALGO_LEFT
+	mark_algo_random: MARK_ALGO_RANDOM
+	mark_algo_right: MARK_ALGO_RIGHT
+	mark_clear_memory: MARK_CLEAR_MEMORY
+	mark_move_away: MARK_MOVE_AWAY
+	mark_stay_in_area: MARK_STAY_IN_AREA
+	mark_turn_left: MARK_TURN_LEFT
+	mark_turn_right: MARK_TURN_RIGHT
 
 	height: INTEGER
 		once
@@ -33,11 +43,15 @@ feature {NONE} -- Initialization
 			ticks: INTEGER
 			read_char: CHARACTER
 			game_state: GAME_STATE
+
+			player_height: INTEGER -- for testing
+			player_width: INTEGER -- for testing
 		do
 			create ui.init
 			create gameboard.constructor (height, width)
-			game_state := init_game_state(gameboard)
 
+			init_marks
+			game_state := init_game_state(gameboard)
 			ui.draw (game_state)
 
 			set_non_blocking
@@ -49,19 +63,49 @@ feature {NONE} -- Initialization
 			invariant
 				ticks >= 0
 			until
-				ticks >= 100
+				ticks >= 100 -- always false, due to line 74
 			loop
-
+				-- read char and process a valid input
 				read_char := get_char
-				if (read_char = 'w') then
-					print(read_char)
-				elseif (read_char = 'k') then
-					print(read_char)
+				place_mark_player1(game_state.gameboard, game_state.players.at (1).position_height, game_state.players.at (1).position_width, read_char)
+				place_mark_player2(game_state.gameboard, game_state.players.at (2).position_height, game_state.players.at (2).position_width, read_char)
+				place_mark_player3(game_state.gameboard, game_state.players.at (3).position_height, game_state.players.at (3).position_width, read_char)
+
+				if (ticks = 10) then
+					ticks := 0
+					-- dummy implementation for movement of player1 (doesn't work well ^^)
+					player_height := game_state.players.at (1).position_height
+					player_width := game_state.players.at (1).position_width
+					if (game_state.gameboard.get_tile (player_height - 1, player_width).is_walkable) then
+						game_state.players.at (1).set_position_height (player_height - 1)
+					elseif (game_state.gameboard.get_tile (player_height, player_width + 1).is_walkable) then
+						game_state.players.at (1).set_position_width (player_width + 1)
+					elseif (game_state.gameboard.get_tile (player_height + 1, player_width).is_walkable) then
+						game_state.players.at (1).set_position_height (player_height + 1)
+					elseif (game_state.gameboard.get_tile (player_height, player_width - 1).is_walkable) then
+						game_state.players.at (1).set_position_width (player_width - 1)
+					end
+
+					ui.draw (game_state)
 				end
 
 				ticks := ticks + 1
 				sleep (1000 * 1000 * 100)
 			end
+		end
+
+	init_marks
+		-- initializes all mark types
+		do
+			create mark_algo_dfs
+			create mark_algo_left
+			create mark_algo_random
+			create mark_algo_right
+			create mark_clear_memory
+			create mark_move_away
+			create mark_stay_in_area
+			create mark_turn_left
+			create mark_turn_right
 		end
 
 	init_game_state(board : GAMEBOARD) : GAME_STATE
@@ -88,8 +132,8 @@ feature {NONE} -- Initialization
 			create player2.constructor (1, memory2, algo_random)
 			create player3.constructor (2, memory3, algo_random)
 
-			player1.set_position_height(1)
-			player1.set_position_width (3)
+			player1.set_position_height(13)
+			player1.set_position_width (2)
 			player2.set_position_height(1)
 			player2.set_position_width (17)
 			player3.set_position_height(3)
@@ -97,6 +141,93 @@ feature {NONE} -- Initialization
 
 			create game_state.constructor (board, << player1, player2, player3 >>)
 			Result := game_state
+		end
+
+	place_mark_player1(board : GAMEBOARD; position_height : INTEGER; position_width : INTEGER; char : CHARACTER)
+		-- checks if player1 made an input and sets the proper mark on position_height, position_width on the gameboard
+		require
+			height_valid: position_height >= 0
+			widht_valid: position_width >= 0
+		do
+			inspect char
+				when '1' then
+					board.set_tile (position_height, position_width, mark_algo_dfs)
+				when '2' then
+					board.set_tile (position_height, position_width, mark_algo_left)
+				when '3' then
+					board.set_tile (position_height, position_width, mark_algo_random)
+				when 'q' then
+					board.set_tile (position_height, position_width, mark_algo_right)
+				when 'w' then
+					board.set_tile (position_height, position_width, mark_clear_memory)
+				when 'e' then
+					board.set_tile (position_height, position_width, mark_move_away)
+				when 'a' then
+					board.set_tile (position_height, position_width, mark_stay_in_area)
+				when 's' then
+					board.set_tile (position_height, position_width, mark_turn_left)
+				when 'd' then
+					board.set_tile (position_height, position_width, mark_turn_right)
+				else
+			end
+		end
+
+	place_mark_player2(board : GAMEBOARD; position_height : INTEGER; position_width : INTEGER; char : CHARACTER)
+		-- checks if player2 made an input and sets the proper mark on position_height, position_width on the gameboard
+		require
+			height_valid: position_height >= 0
+			widht_valid: position_width >= 0
+		do
+			inspect char
+				when 'r' then
+					board.set_tile (position_height, position_width, mark_algo_dfs)
+				when 't' then
+					board.set_tile (position_height, position_width, mark_algo_left)
+				when 'z' then
+					board.set_tile (position_height, position_width, mark_algo_random)
+				when 'f' then
+					board.set_tile (position_height, position_width, mark_algo_right)
+				when 'g' then
+					board.set_tile (position_height, position_width, mark_clear_memory)
+				when 'h' then
+					board.set_tile (position_height, position_width, mark_move_away)
+				when 'v' then
+					board.set_tile (position_height, position_width, mark_stay_in_area)
+				when 'b' then
+					board.set_tile (position_height, position_width, mark_turn_left)
+				when 'n' then
+					board.set_tile (position_height, position_width, mark_turn_right)
+				else
+			end
+		end
+
+	place_mark_player3(board : GAMEBOARD; position_height : INTEGER; position_width : INTEGER; char : CHARACTER)
+		-- checks if player1 made an input and sets the proper mark on position_height, position_width on the gameboard
+		require
+			height_valid: position_height >= 0
+			widht_valid: position_width >= 0
+		do
+			inspect char
+				when '7' then
+					board.set_tile (position_height, position_width, mark_algo_dfs)
+				when '8' then
+					board.set_tile (position_height, position_width, mark_algo_left)
+				when '9' then
+					board.set_tile (position_height, position_width, mark_algo_random)
+				when 'u' then
+					board.set_tile (position_height, position_width, mark_algo_right)
+				when 'i' then
+					board.set_tile (position_height, position_width, mark_clear_memory)
+				when 'o' then
+					board.set_tile (position_height, position_width, mark_move_away)
+				when 'j' then
+					board.set_tile (position_height, position_width, mark_stay_in_area)
+				when 'k' then
+					board.set_tile (position_height, position_width, mark_turn_left)
+				when 'l' then
+					board.set_tile (position_height, position_width, mark_turn_right)
+				else
+			end
 		end
 
 
