@@ -47,11 +47,11 @@ feature {NONE} -- Initialization
 			player_height: INTEGER -- for testing
 			player_width: INTEGER -- for testing
 		do
-			create ui.init
 			create gameboard.constructor (height, width)
 
 			init_marks
 			game_state := init_game_state(gameboard)
+			create ui.init (game_state)
 			ui.draw (game_state)
 
 			set_non_blocking

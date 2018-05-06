@@ -23,41 +23,68 @@ feature {NONE}
 			terminal.reset_input
 		end
 
+	draw_legend
+		do
+			print ("%/27/[0;37;46m *       Marks        * %N");
+			terminal.draw_algo (" 1 ") print (" Algorithm DFS%N")
+			terminal.draw_algo (" 2 ") print (" Algorithm Left%N")
+			terminal.draw_algo (" 3 ") print (" Algorithm Random%N")
+			terminal.draw_algo (" 4 ") print (" Algorithm Right%N")
+			terminal.draw_mark (" C ") print (" Clear Memory%N")
+			terminal.draw_mark (" M ") print (" Move away%N")
+			terminal.draw_mark (" S ") print (" Stay in Area%N")
+			terminal.draw_mark (" L ") print (" Turn Left%N")
+			terminal.draw_mark (" R ") print (" Turn Right%N")
+		end
+
 feature
 
-	init
+	init (state: GAME_STATE)
 		do
-			create terminal.init (11)
+			create terminal.init (5)
 
 			print ("%/27/[0;37;46m");
 			print (" ********************** %N")
 			print (" *      Botracer      * %N")
 			print (" ********************** %N")
 
-			terminal.reset_color
+			terminal.draw_line
+			print (state.gameboard.out) -- Draw the gameboard
+			terminal.draw_line
 
-			print ("%N")
-
+			print (" Commands | ")
+			terminal.draw_algo (" 1 ") print (" | ")
+			terminal.draw_algo (" 2 ") print (" | ")
+			terminal.draw_algo (" 3 ") print (" | ")
+			terminal.draw_algo (" 4 ") print (" | ")
+			terminal.draw_mark (" C ") print (" | ")
+			terminal.draw_mark (" M ") print (" | ")
+			terminal.draw_mark (" S ") print (" | ")
+			terminal.draw_mark (" L ") print (" | ")
+			terminal.draw_mark (" R ") print (" | ")
+			terminal.draw_line
 			terminal.player_color (0)
-			print (" Player 1 %N")
+			print (" Player 1 |  1  |  2  |  3  |  Q  |  W  |  E  |  A  |  S  |  D  |%N")
 			terminal.player_color (1)
-			print (" Player 2 %N")
+			print (" Player 2 |  R  |  T  |  Z  |  F  |  G  |  H  |  V  |  B  |  N  |%N")
 			terminal.player_color (2)
-			print (" Player 3 %N")
+			print (" Player 3 |  7  |  8  |  9  |  U  |  I  |  O  |  J  |  K  |  L  |%N")
 
-			terminal.reset_color
-			print ("%N")
+			terminal.draw_line
+
+			draw_legend
+
+			terminal.draw_line
+
 			terminal.save
-
-			print ("%N")
 		end
 
 	draw (state: GAME_STATE)
 		do
-			-- terminal.clear
 			terminal.move_offset (0, 0)
 			print (state.gameboard.out) -- Draw the gameboard
 			across state.players as player loop draw_player(player.item) end -- Draw the players
+
 			terminal.reset_input
 		end
 

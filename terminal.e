@@ -19,6 +19,7 @@ feature
 	init (init_offset: INTEGER)
 		do
 			offset := init_offset
+			print ("%/27/[25l")
 			print ("%/27/[18h")
 			print ("%/27/[1J") -- clear the console from cursor to the start of the screen
 			move (0,0)
@@ -62,14 +63,6 @@ feature
 			move (x + 1, y + offset)
 		end
 
-	-- Clear the maze
-	clear
-		do
-			reset_color
-			move (0, offset)
-			print ("%/27/[0J") -- Clear the console from cursor to end of the screen
-		end
-
 	-- Select Player color, for drawing
 	player_color (id: INTEGER)
 		do
@@ -82,6 +75,23 @@ feature
 			else
 				reset_color
 			end
+		end
+
+	draw_line
+		do
+			reset_color print ("%N")
+		end
+
+	draw_algo (s: STRING)
+		do
+			print("%/27/[1;35;47m" + s)
+			reset_color
+		end
+
+	draw_mark (s: STRING)
+		do
+			print("%/27/[1;34;47m" + s)
+			reset_color
 		end
 
 end
