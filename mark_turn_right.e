@@ -15,4 +15,9 @@ feature
 	do
 		Result := "%/27/[0;30;47mR"
 	end
+
+	has_effect(player: PLAYER)
+		do
+			print("effect of MARK_TURN_RIGHT")
+		end
 end

@@ -15,4 +15,9 @@ feature
 	do
 		Result := "%/27/[0;30;47m3"
 	end
+
+	has_effect(player: PLAYER)
+		do
+			print("effect of MARK_ALGO_RANDOM")
+		end
 end
