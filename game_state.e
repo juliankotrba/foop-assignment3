@@ -19,5 +19,18 @@ feature
 		gameboard := gameboardd
 		players := playerss
 	end
-	
+
+	set_gameboard(board : GAMEBOARD)
+		require
+			board_valid: board /= Void
+		do
+			gameboard := board
+		end
+
+	set_players(players_ : ARRAY[PLAYER])
+		require
+			players_valid: players_ /= Void
+		do
+			players := players_
+		end
 end
