@@ -10,22 +10,11 @@ class
 create
 	constructor
 
-feature {NONE} -- variables
+feature
 	botmemory : BOTMEMORY
 	botalgorithm : ALGORITHM
-
-feature
-	set_bot_memory(memory : BOTMEMORY)
-		require
-			memory_valid: memory/=Void
-		do
-			botmemory := memory
-		end
-
-	get_bot_memory : BOTMEMORY
-		do
-			Result := botmemory
-		end
+	position_width : INTEGER
+	position_height : INTEGER
 
 	constructor(memory : BOTMEMORY;algorithm : ALGORITHM)
 		require
@@ -36,4 +25,31 @@ feature
 			botalgorithm := algorithm
 		end
 
+	set_bot_memory(memory : BOTMEMORY)
+		require
+			memory_valid: memory /= Void
+		do
+			botmemory := memory
+		end
+
+	set_bot_algorithm(algorithm : ALGORITHM)
+		require
+			algorithm_valid: algorithm /= Void
+		do
+			botalgorithm := algorithm
+		end
+
+	set_position_width(width : INTEGER)
+		require
+			width_valid: width >= 0
+		do
+			position_width := width
+		end
+
+	set_position_height(height : INTEGER)
+		require
+			height_valid: height >= 0
+		do
+			position_height := height
+		end
 end
