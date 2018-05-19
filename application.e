@@ -120,14 +120,16 @@ feature {NONE} -- Initialization
 			memory2: BOTMEMORY
 			memory3: BOTMEMORY
 			algo_random: ALGORITHM_RANDOM
+			algo_dfs: ALGORITHM_DFS
 			game_state: GAME_STATE
 		do
-			create memory1
-			create memory2
-			create memory3
+			create memory1.make
+			create memory2.make
+			create memory3.make
 			create algo_random
+			create algo_dfs
 
-			create player1.constructor (0, memory1, algo_random)
+			create player1.constructor (0, memory1, algo_dfs)
 			create player2.constructor (1, memory2, algo_random)
 			create player3.constructor (2, memory3, algo_random)
 

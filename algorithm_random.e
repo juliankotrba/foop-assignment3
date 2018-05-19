@@ -15,7 +15,7 @@ feature
 		local
 			step: STEP
 		do
-			create step
+			create step.constructor (currentheight,currentwidth)
 			Result := step
 		end
 end
