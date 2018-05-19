@@ -74,11 +74,10 @@ feature {NONE} -- Initialization
 				ticks := 0
 
 					across
-                		game_state.players as pls
+                		game_state.players as players
             		loop
-                		pls.item.move(game_state.gameboard)
+                		players.item.move(game_state.gameboard)
             		end
-
 
 					ui.draw (game_state)
 				end
