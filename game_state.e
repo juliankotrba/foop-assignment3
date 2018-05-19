@@ -14,10 +14,10 @@ feature
 	gameboard: GAMEBOARD
 	players: ARRAY[PLAYER]
 
-	constructor(gameboardd : GAMEBOARD; playerss : ARRAY[PLAYER])
+	constructor(gameboard_ : GAMEBOARD; players_ : ARRAY[PLAYER])
 	do
-		gameboard := gameboardd
-		players := playerss
+		gameboard := gameboard_
+		players := players_
 	end
 
 	set_gameboard(board : GAMEBOARD)

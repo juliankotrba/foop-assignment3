@@ -7,6 +7,9 @@ note
 class
 	BOTMEMORY
 
+inherit
+	EXECUTION_ENVIRONMENT
+
 create
 	make
 
@@ -14,6 +17,7 @@ feature
 	make
 		do
 			create visited.make
+			visited.compare_objects
 			create path.make_empty
 		end
 
@@ -26,7 +30,8 @@ feature
 
 	add_step(step:STEP)
 		do
-			visited.extend(step)
+
+			visited.extend (step)
 			path.force(step, path.count)
 		end
 
@@ -38,6 +43,7 @@ feature
 feature {NONE}
 	visited: LINKED_LIST[STEP]
 	path: ARRAY[STEP]
+
 
 
 end

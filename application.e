@@ -71,19 +71,17 @@ feature {NONE} -- Initialization
 				place_mark_player3(game_state.gameboard, game_state.players.at (3).position_height, game_state.players.at (3).position_width, read_char)
 
 				if (ticks = 10) then
-					ticks := 0
-					-- dummy implementation for movement of player1 (doesn't work well ^^)
-					player_height := game_state.players.at (1).position_height
-					player_width := game_state.players.at (1).position_width
-					if (game_state.gameboard.get_tile (player_height - 1, player_width).is_walkable) then
-						game_state.players.at (1).set_position_height (player_height - 1)
-					elseif (game_state.gameboard.get_tile (player_height, player_width + 1).is_walkable) then
-						game_state.players.at (1).set_position_width (player_width + 1)
-					elseif (game_state.gameboard.get_tile (player_height + 1, player_width).is_walkable) then
-						game_state.players.at (1).set_position_height (player_height + 1)
-					elseif (game_state.gameboard.get_tile (player_height, player_width - 1).is_walkable) then
-						game_state.players.at (1).set_position_width (player_width - 1)
-					end
+				ticks := 0
+
+					game_state.players.at (1).move (game_state.gameboard)
+					game_state.players.at (2).move (game_state.gameboard)
+
+					across
+                		game_state.players as pls
+            		loop
+                		pls.item.move(game_state.gameboard)
+            		end
+
 
 					ui.draw (game_state)
 				end
@@ -130,8 +128,8 @@ feature {NONE} -- Initialization
 			create algo_dfs
 
 			create player1.constructor (0, memory1, algo_dfs)
-			create player2.constructor (1, memory2, algo_random)
-			create player3.constructor (2, memory3, algo_random)
+			create player2.constructor (1, memory2, algo_dfs)
+			create player3.constructor (2, memory3, algo_dfs)
 
 			player1.set_position_height(13)
 			player1.set_position_width (2)

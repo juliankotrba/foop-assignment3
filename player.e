@@ -55,4 +55,13 @@ feature
 		do
 			position_height := height
 		end
+
+	move(gb: GAMEBOARD)
+		local
+			step: STEP
+		do
+			step := bot_algorithm.get_next_step (position_width, position_height, gb, bot_memory)
+			position_width := step.get_width
+			position_height := step.get_height
+		end
 end

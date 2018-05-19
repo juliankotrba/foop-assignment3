@@ -7,6 +7,9 @@ note
 class
 	STEP
 
+inherit
+	ANY
+		redefine is_equal end
 create
 	constructor
 
@@ -31,6 +34,11 @@ feature
 	get_width(): INTEGER
 		do
 			Result := width
+		end
+
+	is_equal(other: STEP): BOOLEAN
+		do
+			Result := height = other.height and width = other.width
 		end
 
 end
