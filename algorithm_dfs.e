@@ -47,6 +47,7 @@ feature
 			end
 
 			botmemory.add_step(step)
+
 			Result := step
 		end
 
@@ -64,7 +65,5 @@ feature {NONE}
 			end
 
 		end
-
-
 
 end

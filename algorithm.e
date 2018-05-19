@@ -15,7 +15,6 @@ feature
 				currentheight >= 0
 				botmemory /= Void
 				gameboard /= Void
-
 		deferred
 	end
 
