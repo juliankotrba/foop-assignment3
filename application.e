@@ -73,9 +73,6 @@ feature {NONE} -- Initialization
 				if (ticks = 10) then
 				ticks := 0
 
-					game_state.players.at (1).move (game_state.gameboard)
-					game_state.players.at (2).move (game_state.gameboard)
-
 					across
                 		game_state.players as pls
             		loop
