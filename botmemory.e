@@ -46,6 +46,15 @@ feature
 			Result := not visited.has(step)
 		end
 
+	clear_memory()
+		do
+			visited.wipe_out
+			path.clear_all
+		ensure
+			visited.count = 0
+			path.count = 0
+		end
+
 feature {NONE}
 	visited: LINKED_LIST[STEP]
 	path: ARRAY[STEP]
