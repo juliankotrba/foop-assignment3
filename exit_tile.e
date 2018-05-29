@@ -12,11 +12,15 @@ inherit
 feature
 	is_walkable : BOOLEAN
 		do
-			Result := false
+			Result := true
 		end
 
 	get_symbol : STRING
 		do
 			Result := "%/27/[1;37;46mE"
+		end
+
+	has_effect(player : PLAYER)
+		do
 		end
 end

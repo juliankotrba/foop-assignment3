@@ -17,7 +17,10 @@ feature
 	end
 
 	has_effect(player : PLAYER)
+		local
+			special: SPECIALMARK_TURN_RIGHT
 		do
-			print("effect of MARK_TURN_RIGHT")
+			create special
+			player.bot_memory.set_special(special)
 		end
 end

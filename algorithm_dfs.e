@@ -18,6 +18,9 @@ feature
 		local
 				step: STEP
 				last_step: STEP
+				specialstep: STEP
+				specialDefault: SPECIALMARK_DEFAULT
+				specialstepfound: BOOLEAN
 		do
 
 			-- Try north
@@ -46,9 +49,32 @@ feature
 				step := botmemory.go_back
 			end
 
-			botmemory.add_step(step)
 
 			Result := step
+			specialstep := botmemory.get_special.get_next_step(currentwidth,currentheight, gameboard,botmemory)
+			if specialstep.get_height = currentheight and specialstep.get_width = currentwidth then
+			else
+				specialstepfound := true
+				if currentheight = specialstep.get_height and currentwidth < specialstep.get_width then
+					botmemory.set_last_step(0)
+				end
+				if currentheight < specialstep.get_height and currentwidth = specialstep.get_width then
+					botmemory.set_last_step(1)
+				end
+				if currentheight = specialstep.get_height and currentwidth > specialstep.get_width then
+					botmemory.set_last_step(2)
+				end
+				if currentheight > specialstep.get_height and currentwidth = specialstep.get_width  then
+					botmemory.set_last_step(3)
+				end
+				Result := specialstep
+			end
+			if botmemory.get_special.is_finished then
+				create specialDefault
+				botmemory.set_special(specialDefault)
+			end
+
+
 		end
 
 feature {NONE}

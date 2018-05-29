@@ -17,7 +17,10 @@ feature
 	end
 
 	has_effect(player : PLAYER)
+		local
+			algo: ALGORITHM_TURN_RIGHT
 		do
-			print("effect of MARK_ALGO_RIGHT")
+			create algo
+			player.set_bot_algorithm(algo)
 		end
 end

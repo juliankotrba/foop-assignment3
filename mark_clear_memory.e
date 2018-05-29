@@ -17,7 +17,9 @@ feature
 	end
 
 	has_effect(player : PLAYER)
+		local
+			memory1: BOTMEMORY
 		do
-			print("effect of MARK_CLEAR_MEMORY")
+			player.bot_memory.clear_memory
 		end
 end

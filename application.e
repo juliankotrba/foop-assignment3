@@ -46,6 +46,8 @@ feature {NONE} -- Initialization
 
 			player_height: INTEGER -- for testing
 			player_width: INTEGER -- for testing
+
+			emptytile: EMPTY_TILE
 		do
 			create gameboard.constructor (height, width)
 
@@ -77,9 +79,17 @@ feature {NONE} -- Initialization
                 		game_state.players as players
             		loop
                 		players.item.move(game_state.gameboard)
+                		gameboard.get_tile (players.item.position_height, players.item.position_width).has_effect(players.item)
             		end
 
+					across
+                		game_state.players as players
+            		loop
+            			create emptytile
+                		gameboard.set_tile (players.item.position_height, players.item.position_width,emptytile)
+            		end
 					ui.draw (game_state)
+
 				end
 
 				ticks := ticks + 1
@@ -115,6 +125,8 @@ feature {NONE} -- Initialization
 			memory3: BOTMEMORY
 			algo_random: ALGORITHM_RANDOM
 			algo_dfs: ALGORITHM_DFS
+			algo_tl: ALGORITHM_TURN_LEFT
+			algo_tr: ALGORITHM_TURN_RIGHT
 			game_state: GAME_STATE
 		do
 			create memory1.make
@@ -122,10 +134,12 @@ feature {NONE} -- Initialization
 			create memory3.make
 			create algo_random
 			create algo_dfs
+			create algo_tl
+			create algo_tr
 
-			create player1.constructor (0, memory1, algo_dfs)
-			create player2.constructor (1, memory2, algo_dfs)
-			create player3.constructor (2, memory3, algo_dfs)
+			create player1.constructor (0, memory1, algo_tr)
+			create player2.constructor (1, memory2, algo_tl)
+			create player3.constructor (2, memory3, algo_tl)
 
 			player1.set_position_height(13)
 			player1.set_position_width (2)

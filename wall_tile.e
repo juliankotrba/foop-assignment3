@@ -19,4 +19,8 @@ feature
 		do
 			Result := "%/27/[0;34;44m#"
 		end
+
+	has_effect(player : PLAYER)
+		do
+		end
 end

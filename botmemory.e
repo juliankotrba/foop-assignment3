@@ -15,10 +15,14 @@ create
 
 feature
 	make
+		local
+			defaultmark: SPECIALMARK_DEFAULT
 		do
 			create visited.make
 			visited.compare_objects
 			create path.make_empty
+			create defaultmark
+			special := defaultmark
 		end
 
 	-- returns last visited position and removes it from path stack
@@ -46,16 +50,41 @@ feature
 			Result := not visited.has(step)
 		end
 
+	set_last_step(int: INTEGER)
+		do
+			lastdirection := int
+		ensure
+			lastdirection < 4
+			lastdirection > -2
+		end
+
+	get_last_step: INTEGER
+		do
+			Result := lastdirection
+		end
+
 	clear_memory()
 		do
 			visited.wipe_out
 			path.clear_all
+			lastdirection := -1
 		ensure
 			visited.count = 0
 			path.count = 0
 		end
 
+	get_special: SPECIALMARK
+		do
+			Result := special
+		end
+
+	set_special(specialmark: SPECIALMARK)
+		do
+			special := specialmark
+		end
 feature {NONE}
 	visited: LINKED_LIST[STEP]
 	path: ARRAY[STEP]
+	lastdirection: INTEGER
+	special: SPECIALMARK
 end

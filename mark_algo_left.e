@@ -20,7 +20,10 @@ feature
 	end
 
 	has_effect(player : PLAYER)
+		local
+			algo: ALGORITHM_TURN_LEFT
 		do
-			print("effect of MARK_ALGO_LEFT")
+			create algo
+			player.set_bot_algorithm (algo)
 		end
 end

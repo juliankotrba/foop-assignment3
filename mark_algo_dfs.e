@@ -17,7 +17,10 @@ feature
 	end
 
 	has_effect(player : PLAYER)
+		local
+			algo: ALGORITHM_DFS
 		do
-			print("effect of MARK_ALGO_DFS")
+			create algo
+			player.set_bot_algorithm (algo)
 		end
 end

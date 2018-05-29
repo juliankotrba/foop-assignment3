@@ -17,7 +17,10 @@ feature
 	end
 
 	has_effect(player : PLAYER)
+		local
+			algo: ALGORITHM_RANDOM
 		do
-			print("effect of MARK_ALGO_RANDOM")
+			create algo
+			player.set_bot_algorithm (algo)
 		end
 end
