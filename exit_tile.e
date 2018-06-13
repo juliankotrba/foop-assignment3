@@ -22,5 +22,14 @@ feature
 
 	has_effect(player : PLAYER)
 		do
+			print("Player " + (player.bot_id + 1).out + " has won")
+			exit
+		end
+
+feature {NONE}
+
+	exit
+		external "C inline use <stdlib.h>"
+			alias "exit(0)"
 		end
 end
