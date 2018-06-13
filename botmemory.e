@@ -64,13 +64,14 @@ feature
 		end
 
 	clear_memory()
+		local
+			defaultmark: SPECIALMARK_DEFAULT
 		do
 			visited.wipe_out
 			path.clear_all
 			lastdirection := -1
-		ensure
-			visited.count = 0
-			path.count = 0
+			create defaultmark
+			special := defaultmark
 		end
 
 	get_special: SPECIALMARK

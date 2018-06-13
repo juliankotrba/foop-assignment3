@@ -20,6 +20,7 @@ feature
 		local
 			memory1: BOTMEMORY
 		do
-			player.bot_memory.clear_memory
+			create memory1.make
+			player.set_bot_memory (memory1)
 		end
 end

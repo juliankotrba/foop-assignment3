@@ -17,7 +17,10 @@ feature
 	end
 
 	has_effect(player : PLAYER)
+		local
+			special: SPECIALMARK_MOVEAWAY
 		do
-			print("effect of MARK_MOVE_AWAY")
+			create special.constructor(player.position_width,player.position_height)
+			player.bot_memory.set_special(special)
 		end
 end

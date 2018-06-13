@@ -11,6 +11,8 @@ inherit
 	SPECIALMARK
 	EXECUTION_ENVIRONMENT
 
+	
+
 feature
 
 	is_finished : BOOLEAN

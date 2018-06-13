@@ -24,7 +24,7 @@ feature
 				specialstepfound: BOOLEAN
 		do
 			create step.constructor (currentheight, currentwidth)
-
+			--coming from left
 			if (botmemory.get_last_step=0 or botmemory.get_last_step=-1) then
 				if(gameboard.get_tile (currentheight, currentwidth-1).is_walkable) then
 					create step.constructor(currentheight, currentwidth-1)
@@ -51,6 +51,7 @@ feature
 					end
 				end
 			end
+			--coming from right
 			if (botmemory.get_last_step=2) then
 				if(gameboard.get_tile (currentheight, currentwidth+1).is_walkable) then
 					create step.constructor(currentheight, currentwidth+1)
@@ -77,6 +78,7 @@ feature
 					end
 				end
 			end
+			--coming from bottom
 			if (botmemory.get_last_step=3) then
 				if(gameboard.get_tile (currentheight+1, currentwidth).is_walkable) then
 					create step.constructor(currentheight+1, currentwidth)
@@ -103,6 +105,7 @@ feature
 					end
 				end
 			end
+			--coming from top
 			if (botmemory.get_last_step=1) then
 				if(gameboard.get_tile (currentheight-1, currentwidth).is_walkable) then
 					create step.constructor(currentheight-1, currentwidth)

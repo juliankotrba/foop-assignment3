@@ -17,7 +17,10 @@ feature
 	end
 
 	has_effect(player : PLAYER)
+		local
+			special: SPECIALMARK_STAYINAREA
 		do
-			print("effect of MARK_STAY_IN_AREA")
+			create special.constructor(player.position_width,player.position_height)
+			player.bot_memory.set_special(special)
 		end
 end
