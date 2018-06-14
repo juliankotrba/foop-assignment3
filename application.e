@@ -93,7 +93,7 @@ feature {NONE} -- Initialization
 				end
 
 				ticks := ticks + 1
-				sleep (1000 * 1000 * 100)
+				sleep (1000 * 1000 * 40)
 			end
 		end
 
